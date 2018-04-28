@@ -12,12 +12,8 @@ def parse_code(s):
             while next_index != end and lines[next_index].startswith('...'):
                 block.append(lines[next_index][4:])
                 next_index += 1
-                if next_index == end:
-                    print('first while index end')
             while next_index != end and not any(lines[next_index].startswith(s) for s in ('>>>', 'Trace', '  File')):
                 next_index +=1
-                if next_index == end:
-                    print('2nd while index end')
 
             if next_index != end and lines[next_index].startswith('>>>'):
                 result.append('\n'.join(block))
@@ -33,8 +29,6 @@ def copy(to_end=False):
             code = output.split('\nPython')[-1]
     else:
         code = pyperclip.paste()
-        # print(code)
-        # return code
     pyperclip.copy(parse_code(code))
     return None
 
