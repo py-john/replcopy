@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 import pyperclip
 
-def parse_code(s):
+def parse_code(code):
+    """Parse code and return string of updated version."""
     result = []
-    lines = s.splitlines()
+    lines = code.splitlines()
     end = len(lines)
     for index, line in enumerate(lines):
         next_index = index + 1
@@ -23,6 +24,12 @@ def parse_code(s):
     return '\n'.join(result)
 
 def copy(to_end=False):
+    """Replace clipboard code with parsed version.
+
+    If to_end is True, open the terminal output file to get the 
+    full last shell session, treating bpython and vanilla python the same.
+    """
+    # Find a way to generalize this for different systems
     if to_end:
         with open('/Users/john/Terminal Saved Output', 'r') as f:
             output = f.read().replace('bpython', 'Python')
